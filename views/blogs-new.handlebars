@@ -1,0 +1,40 @@
+<!-- views/blogs-new.handlebars-->
+
+<form method="POST" action="/blogs">
+  <fieldset>
+    <legend>New Blog</legend>
+    <!-- TITLE -->
+    <p>
+      <label for="title">Article Title</label><br>
+      <input type="text" name="title" />
+    </p>
+
+    <p>
+        <label for="dropDown">Rate the article</label>
+        <select for="dropDown" name="dropDown" class="drop-down">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </p>
+
+    <p>
+      <label for="blogTitle">Blog Title</label><br>
+      <input type="text" name="blogTitle" />
+    </p>
+    <!-- DESCRIPTION -->
+   <p>
+     <label for="review-text">Blog</label><br>
+     <textarea id="review-text" name="description" rows="10" /></textarea>
+   </p>
+
+</fieldset>
+  <!-- BUTTON -->
+  <p>
+    <button type="submit">Save Blog</button>
+  </p>
+
+</form>

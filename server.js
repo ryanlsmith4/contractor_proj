@@ -1,3 +1,4 @@
+const methodOverride = require('method-override');
 const express = require('express');
 const app = express();
 var exphbs = require('express-handlebars');
@@ -16,19 +17,44 @@ const Blog = mongoose.model('Blog', {
     blogTitle: String,
     dropDown: Number,
 })
-// reviews is blogs
-// let blogs = [
-//     { title: "What's America Thinking?", newsArticle: "Trumps does somthing stupid"},
-//     { title: "Today was a sad day.", newsArticle: "kavanugh is terrible"},
-//     { title: "Today in San Francisco", newsArticle: "There was a strike"}
-// ]
+
+
+//override with POST having ?_method=DELETE or ?_method=put
+app.use(methodOverride('_method'));
+// Show blogs unique route
+app.get('/blogs/view/:id', (req, res) => {
+    Blog.findById(req.params.id).then((blog) => {
+        res.render('blogs-show', { blog: blog })
+    }).catch((err) => {
+        console.log(err.message);
+    })
+});
+
+
+
+app.get('/blogs/view/:id/edit', (req, res) => {
+    Blog.findById(req.params.id, function(err, blog) {
+        res.render('blogs-edit', { blog: blog });
+    })
+})
 
 // Create New database object for a blog
-app.post('/blogs', (req, res) => {
+app.post('/blogs/view', (req, res) => {
     Blog.create(req.body).then((blog) => {
         console.log(blog);
-        res.redirect('/');
+        res.redirect(`/blogs/view/${blog._id}`); // redirect to blogs/:id
     }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+
+app.put('/blogs/view/:id', (req, res) => {
+    Blog.findByIdAndUpdate(req.params.id, req.body)
+    .then(blog => {
+        res.redirect(`/blogs/view/${blog._id}`)
+    })
+    .catch(err => {
         console.log(err.message);
     })
 })

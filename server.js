@@ -6,6 +6,7 @@ var exphbs = require('express-handlebars');
 // mongoose.connect('mongodb://localhost/contractor_proj');
 const bodyParser = require('body-parser');
 const Blog = require('./models/blog');
+const port = process.env.PORT || 3000;
 
 
 
@@ -24,6 +25,6 @@ module.exports = app;
 // const blogs = require('./controllers/routes')(app);
 const blogs = require('./controllers/routes')(app, Blog);
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('App Listening on port 3000');
 });

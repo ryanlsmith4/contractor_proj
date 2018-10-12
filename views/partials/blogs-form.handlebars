@@ -1,6 +1,6 @@
 <!--views/partials/review-form.handlebars-->
 
-<fieldset>
+<fieldset class="container">
   <legend>Edit Blog</legend>
   <!-- TITLE -->
   <p>
@@ -20,3 +20,11 @@
     <textarea id="blog-description" name="description" rows="10" />{{blog.description}}</textarea>
   </p>
 </fieldset>
+
+<style>
+    fieldset {
+        border: 1px solid rgb(255,232,57);
+        width: 400px;
+        float: left;
+    }
+</style>

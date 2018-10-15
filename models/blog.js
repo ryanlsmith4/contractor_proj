@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/contractor_proj'
 const Blog = mongoose.model('Blog', {
     title: String,
     description: String,
-    blogTitle: String,
+    articleTitle: String,
     dropDown: Number,
 });
 
